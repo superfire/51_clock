@@ -25,7 +25,6 @@ VOID mculib_ext_init(VOID);
 
 //
 VOID delay_ms(UINT16 u16_ms);
-VOID delay_us( UINT16 u16_us );
 
 
 extern UINT16 g_u16_sys_timer;

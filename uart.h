@@ -9,8 +9,6 @@ VOID uart_print_dec(UINT16 u16_word);
 VOID uart_print_hex(UINT16 u16_word);
 VOID uart_print_string(UINT8 *u8_string);
 
-VOID mculib_uart_service(VOID);
-
 //application interface
 VOID uart_log(UINT8 *u8_string);
 VOID uart_log1(UINT8 *u8_string, UINT16 u16_hex);

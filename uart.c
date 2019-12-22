@@ -119,7 +119,3 @@ VOID uart_isr(VOID) interrupt 4
     }
 }
 
-VOID mculib_uart_service(VOID)
-{   
-    
-}

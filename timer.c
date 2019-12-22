@@ -95,9 +95,9 @@ static void chk_alarm()
 	}
 	
 	time = g_sys_time;
-	if( ( g_sys_alarm.time.sec == g_sys_time.sec ) &&\
-        ( g_sys_alarm.time.min == g_sys_time.min ) &&\
-	    ( g_sys_alarm.time.hour == g_sys_time.hour ) )
+	if( ( g_sys_alarm.time.sec == time.sec ) &&\
+        ( g_sys_alarm.time.min == time.min ) &&\
+	    ( g_sys_alarm.time.hour == time.hour ) )
 	{
 	    LOG("\r\nalarm arrived, cur time:\r\n");
 		LOG2("hour:", g_sys_time.hour);
@@ -131,14 +131,17 @@ VOID timer0_isr(VOID) interrupt 1
     
 	g_sys_time.msec ++;
 	
+	// 更新系统时间
 	if( g_sys_time.msec >= SYS_TIMEOUT_1SEC )
 	{
 		g_sys_time.msec = 0;
 	    update_sys_time();
 	}
 
+	// 处理闹钟功能
 	chk_alarm();
 	
+	// 处理秒表功能
 	if( g_sys_stopwatch.is_running == TRUE )
 	{
 	    g_sys_stopwatch.time.msec ++;
@@ -161,12 +164,6 @@ VOID delay_ms(UINT16 u16_ms)
 
         }
     }
-}
-
-VOID delay_us( UINT16 u16_us )
-{
-    while (u16_us--)
-		_nop_();
 }
 
 #if 0

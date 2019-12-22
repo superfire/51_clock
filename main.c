@@ -1,7 +1,5 @@
 #include "comm.h"
 
-#define    DELAY_DISP_MS    20  // 该时间需要调试确定
-
 
 SysModeDef  g_sys_mode = MODE_DISP_TIME;
 extern SysTimeDef  g_sys_time;
@@ -57,16 +55,19 @@ void main(void)
 
 void enter_disp_time()
 {
+	SysPressKeyDef cur_key;
 	LOG("\r\nenter disp_time");
 	
 	while(1)
 	{
+		
 		disp_time( g_sys_time );
 		
+		cur_key = key_scan();
 		/*
 		 * 正常显示时间模式，按下模式键，进入调整系统时间状态
 		 */
-		if( key_scan() == KEY_MODE )
+		if( cur_key == KEY_MODE )
 		{
 			g_sys_mode = MODE_SET_TIME;
 			return;
