@@ -388,11 +388,6 @@
               <FileType>1</FileType>
               <FilePath>.\disp.c</FilePath>
             </File>
-            <File>
-              <FileName>uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\uart.c</FilePath>
-            </File>
           </Files>
         </Group>
       </Groups>

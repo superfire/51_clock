@@ -19,12 +19,8 @@ void stopwatch_clear();
 
 VOID system_init(VOID)
 {
-    uart_init(9600);
 	timer0_config_ms( TIMER_BASE_1MS );
     enable_interrupt();
-	
-	P2 = 0;
-    LOG("system init.");
 }
 
 void main(void)
@@ -56,7 +52,6 @@ void main(void)
 void enter_disp_time()
 {
 	SysPressKeyDef cur_key;
-	LOG("\r\nenter disp_time");
 	
 	while(1)
 	{
@@ -79,9 +74,7 @@ void enter_set_time()
 {
 	SysTimeDef tmp_time_setting;
 	SysPressKeyDef cur_key;
-	
-	LOG("\r\nenter set time");
-	
+		
 	tmp_time_setting = g_sys_time;
 	while(1)
 	{
@@ -132,7 +125,6 @@ void enter_set_time()
 void enter_stopwatch()
 {
 	SysPressKeyDef cur_key;
-	LOG("\r\nenter stopwatch");
 
 	while( 1 )
 	{
@@ -143,20 +135,17 @@ void enter_stopwatch()
 			stopwatch_clear();
 			stopwatch_start();
 			
-			LOG("\r\nstart stopwatch");
 			while(1)
 			{
 		        cur_key = key_scan();
 		        if( cur_key == KEY_START_STOP )
 				{
 				    stopwatch_stop();
-					LOG("\r\nstop stopwatch");
 					break;
 				}
 				else if( cur_key == KEY_CLEAR)
 				{
 					stopwatch_clear();
-					LOG("\r\nclear stopwatch");
 				}
 		        /* 如果按下模式键，进入设定闹钟模式 */
 		        else if( cur_key == KEY_MODE )
@@ -189,7 +178,6 @@ void enter_alarm()
 	SysPressKeyDef cur_key;
 	SysTimeDef tmp_time_setting = {0,0,0,0};
 
-	LOG("\r\nenter set alarm");
 	while(1)
 	{
 		cur_key = key_scan();

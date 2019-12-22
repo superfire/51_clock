@@ -99,10 +99,6 @@ static void chk_alarm()
         ( g_sys_alarm.time.min == time.min ) &&\
 	    ( g_sys_alarm.time.hour == time.hour ) )
 	{
-	    LOG("\r\nalarm arrived, cur time:\r\n");
-		LOG2("hour:", g_sys_time.hour);
-		LOG2("min:", g_sys_time.min);
-		LOG2("sec:", g_sys_time.sec);
 		g_sys_alarm.is_arrived = TRUE;
 	}
 }
@@ -165,49 +161,3 @@ VOID delay_ms(UINT16 u16_ms)
         }
     }
 }
-
-#if 0
-VOID mculib_timer1_config_us(UINT8 u8_us)
-{
-    //waring, u8_us * FOSC can not large than UINT32
-    UINT8 u8_th = 65536 - u8_us * FOSC / 12 / 1000000UL;
-    
-    TMOD &= 0xf0; 
-    TMOD |= 0x20;  //timer1 is 8 bit auto reload
-    PT1 = 1;       //Improve the priority if you need
-    
-    TL1 = u8_th;
-    TH1 = u8_th;
-
-    TR1 = 1;
-    ET1 = 1;
-}
-
-VOID mculib_ext_init(VOID)
-{
-    //ext1
-    PX1 = 1; //Improve the priority
-    IT1 = 1; //Falling edge trigger
-    EX1 = 1;
-
-    //ext0
-    PX0 = 1;
-    IT0 = 1;
-    EX0 = 1;
-}
-
-VOID ext0_isr(VOID) interrupt 0
-{
-    //do thing
-}
-
-VOID ext1_isr(VOID) interrupt 2
-{
-    //do thing
-}
-
-VOID timer1_isr(VOID) interrupt 3
-{    
-    //do thing
-}
-#endif

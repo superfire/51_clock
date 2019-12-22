@@ -15,7 +15,6 @@
 
 //
 #include "timer.h"
-#include "uart.h"
 #include "key.h"
 #include "disp.h"
 

@@ -125,18 +125,18 @@ void disp_stopwatch()
     }
 }
 
-void disp_digit( UINT32 digit )
-{
-    UINT8 i;
-    UINT8 k = 0x01;
-    UINT32 u32_val = digit;
-    
-    for (i = 0; i < 8; i++)
-    {
-        k =_cror_(k, 1);
-        P2 = 0;
-        seg_display(u32_val % 10);
-        P2 = k;
-        u32_val /= 10;
-    }
-}
+//void disp_digit( UINT32 digit )
+//{
+//    UINT8 i;
+//    UINT8 k = 0x01;
+//    UINT32 u32_val = digit;
+//    
+//    for (i = 0; i < 8; i++)
+//    {
+//        k =_cror_(k, 1);
+//        P2 = 0;
+//        seg_display(u32_val % 10);
+//        P2 = k;
+//        u32_val /= 10;
+//    }
+//}
